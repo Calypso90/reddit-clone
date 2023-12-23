@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String      @id @default(uuid())
+  username  String      @unique
+  password  String
+  subreddit Subreddit[]
+  posts     Post[]
+  votes     Votes[]
+}
+
+model Subreddit {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  name      String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  posts     Post[]
+}
+
+model Post {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  title       String?
+  message     String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  subreddit   Subreddit @relation(fields: [subredditId], references: [id], onDelete: Cascade)
+  subredditId String
+  parent      Post?     @relation("Post", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId    String?
+  children    Post[]    @relation("Post")
+  votes       Votes[]
+}
+
+model Votes {
+  id       String  @id @default(uuid())
+  isUpvote Boolean
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String
+  post     Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId   String
+}
