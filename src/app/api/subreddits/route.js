@@ -4,7 +4,7 @@ import { fetchUser } from "@/lib/fetchUser.js";
 
 export async function POST(request, response) {
   try {
-    const { name, userId } = await request.json();
+    const { name } = await request.json();
 
     const user = await fetchUser();
 

@@ -22,6 +22,14 @@ a {
   font-weight: bolder;
 }
 
+#username {
+  font-size: 25px;
+  color: white;
+  background-color: #ff4500;
+  padding: 5px 10px;
+  border-radius: 50px;
+}
+
 /* NAVBAR */
 
 #reddit-logo {
@@ -277,7 +285,7 @@ a {
 
 .subTitle {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   width: 100%;
   align-items: center;
   background-color: white;
@@ -289,48 +297,12 @@ a {
   color: #ff4500;
 }
 
-/* HOMEPAGE */
-
-#homeFeed {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-#createPost {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 10px;
-  width: 90%;
-  padding: 10px;
-  font-size: 35px;
-  color: #747e88;
-  background-color: white;
-  border: 1px solid #747e88;
-}
-
-#createPostButton {
-  width: 80%;
-  padding: 7px;
-  text-align: left;
-  border: none;
-  color: #747e88;
-}
-
-#create1 {
-  display: flex;
-  gap: 20px;
-  font-size: 25px;
-}
-
-#r-postContainer {
+.r-postContainer {
   display: flex;
   width: 90%;
 }
 
-#r-PostVotes {
+.r-PostVotes {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -356,12 +328,144 @@ a {
   color: #7193ff;
 }
 
-#r-post {
+.r-post {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
   width: 95%;
   padding: 10px;
   font-size: 20px;
   background-color: white;
   border: 1px solid #747e88;
+}
+
+.postTitleBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.postTitle {
+  font-weight: bold;
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.postMessage {
+  font-size: 15px;
+}
+
+.postComments {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 5px;
+  font-size: 15px;
+  color: #747e88;
+}
+
+#newPost {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#newPostForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+  padding: 10px;
+  color: black;
+  background-color: white;
+  border: 1px solid #747e88;
+}
+
+#newPostTitle {
+  background-color: #dae0e6;
+  border: none;
+  font-size: 20px;
+}
+
+#newPostText {
+  background-color: #dae0e6;
+  border: none;
+  font-size: 20px;
+  min-height: 80px;
+}
+
+#buttonDiv {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.postButton {
+  border: none;
+  background-color: #ff4500;
+  color: white;
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+#editButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #747e88;
+  font-weight: bold;
+}
+
+#deleteButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #95a2af;
+}
+
+/* HOMEPAGE */
+
+#homeFeed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#createPost {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  width: 80%;
+  padding: 10px;
+  font-size: 35px;
+  color: #747e88;
+  background-color: white;
+  border: 1px solid #747e88;
+}
+
+#createPostButton {
+  width: 80%;
+  padding: 7px;
+  text-align: left;
+  border: none;
+  color: #747e88;
+}
+
+#create1 {
+  display: flex;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.titleReddit {
+  font-weight: lighter;
+  font-size: 15px;
+  color: #747e88;
+}
+
+.postChange {
+  display: flex;
 }

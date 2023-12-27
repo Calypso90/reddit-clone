@@ -1,9 +1,8 @@
 import { prisma } from "@/lib/prisma.js";
+import { fetchUser } from "@/lib/fetchUser.js";
 import { FaReddit } from "react-icons/fa";
-import { CiImageOn } from "react-icons/ci";
-import { IoIosLink } from "react-icons/io";
-import { BsFillArrowDownSquareFill } from "react-icons/bs";
-import { BsFillArrowUpSquareFill } from "react-icons/bs";
+import NewPost from "@/components/newPost.jsx";
+import Posts from "@/components/posts.jsx";
 
 export default async function SubPage({ params }) {
   const { subredditId } = params;
@@ -12,6 +11,17 @@ export default async function SubPage({ params }) {
     where: { id: subredditId },
   });
 
+  const posts = await prisma.post.findMany({
+    where: {
+      subredditId: subredditId,
+      parentId: null,
+    },
+    include: { user: true },
+    orderBy: { createdAt: "desc" },
+  });
+
+  const user = await fetchUser();
+
   return (
     <div className="subPage">
       <div id="titleBox">
@@ -19,38 +29,8 @@ export default async function SubPage({ params }) {
           <FaReddit id="subIcon" /> r/{sub.name}
         </div>
       </div>
-      <div id="createPost">
-        <FaReddit />
-        <button id="createPostButton"> Create Post</button>
-        <div id="create1">
-          <CiImageOn />
-          <IoIosLink />
-        </div>
-      </div>
-      <div id="r-postContainer">
-        <div id="r-PostVotes">
-          <button className="upvote">
-            <BsFillArrowUpSquareFill />
-          </button>
-          <span>9</span>
-          <button className="downvote">
-            <BsFillArrowDownSquareFill />
-          </button>
-        </div>
-        <div id="r-post">This is a post</div>
-      </div>
-      <div id="r-postContainer">
-        <div id="r-PostVotes">
-          <button className="upvote">
-            <BsFillArrowUpSquareFill />
-          </button>
-          <span>7</span>
-          <button className="downvote">
-            <BsFillArrowDownSquareFill />
-          </button>
-        </div>
-        <div id="r-post">This is another post</div>
-      </div>
+      <NewPost user={user} subredditId={subredditId} />
+      <Posts posts={posts} />
     </div>
   );
 }
