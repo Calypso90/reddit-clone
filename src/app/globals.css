@@ -348,7 +348,7 @@ a {
 .postTitle {
   font-weight: bold;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 15px;
 }
 
@@ -462,7 +462,7 @@ a {
 
 .titleReddit {
   font-weight: lighter;
-  font-size: 15px;
+  font-size: 12px;
   color: #747e88;
 }
 

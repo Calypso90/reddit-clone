@@ -10,7 +10,7 @@ export async function Navbar() {
   return (
     <div id="navbar">
       <div id="reddit">
-        <Link href={"/home"}>
+        <Link href={"/"}>
           <img id="reddit-logo" src="/reddit-logo.png" />
         </Link>
         <p>reddit</p>
