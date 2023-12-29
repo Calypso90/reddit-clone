@@ -7,19 +7,30 @@ export async function POST(request, response) {
 
   const user = await fetchUser();
 
-  const postExists = await prisma.post.findFirst({ where: { title } });
+  if (title) {
+    const postExists = await prisma.post.findFirst({ where: { title } });
 
-  if (!postExists) {
+    if (!postExists) {
+      const post = await prisma.post.create({
+        data: {
+          title,
+          message,
+          subredditId,
+          parentId,
+          userId: user.id,
+        },
+      });
+      return NextResponse.json({ success: true, post });
+    }
+  } else {
     const post = await prisma.post.create({
       data: {
-        title,
         message,
         subredditId,
         parentId,
         userId: user.id,
       },
     });
-
     return NextResponse.json({ success: true, post });
   }
 }

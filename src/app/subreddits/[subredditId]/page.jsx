@@ -3,10 +3,9 @@ import { fetchUser } from "@/lib/fetchUser.js";
 import { FaReddit } from "react-icons/fa";
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
 import { BsFillArrowUpSquareFill } from "react-icons/bs";
+import { FaRegCommentAlt } from "react-icons/fa";
 import NewPost from "@/components/newPost.jsx";
-import Delete from "@/components/deletePost.jsx";
-import EditPost from "@/components/editPost.jsx";
-import Comments from "@/components/comments.jsx";
+import Link from "next/link.js";
 
 export default async function SubPage({ params }) {
   const { subredditId } = params;
@@ -47,7 +46,10 @@ export default async function SubPage({ params }) {
                   <BsFillArrowDownSquareFill />
                 </button>
               </div>
-              <div className="r-post">
+              <Link
+                className="r-post"
+                href={`/subreddits/${post.subredditId}/${post.id}`}
+              >
                 <div className="postTitleBox">
                   <div className="postTitle">
                     {post.title}{" "}
@@ -55,14 +57,12 @@ export default async function SubPage({ params }) {
                       <FaReddit /> Posted by u/{post.user.username}
                     </p>
                   </div>
-                  <div className="postChange">
-                    <EditPost post={post} />
-                    <Delete post={post} />
-                  </div>
                 </div>
                 <div className="postMessage">{post.message}</div>
-                <Comments post={post} />
-              </div>
+                <div className="postComments">
+                  <FaRegCommentAlt />
+                </div>
+              </Link>
             </div>
           );
         })}

@@ -11,6 +11,7 @@ export default function Delete({ post }) {
       cache: "no-store",
     });
     const info = await response.json();
+    router.push("/subreddits");
     router.refresh();
   }
 

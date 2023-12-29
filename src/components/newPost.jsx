@@ -2,8 +2,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaReddit } from "react-icons/fa";
-import { CiImageOn } from "react-icons/ci";
-import { IoIosLink } from "react-icons/io";
 
 export default function NewPost({ user, subredditId }) {
   const [postTitle, setPostTitle] = useState("");
@@ -66,10 +64,7 @@ export default function NewPost({ user, subredditId }) {
           {" "}
           Create Post
         </button>
-        <div id="create1">
-          {/* <CiImageOn />
-          <IoIosLink /> */}
-        </div>
+        <div id="create1"></div>
       </div>
       <div id="newPost" style={{ display: isCreating ? "flex" : "none" }}>
         <form id="newPostForm" onSubmit={handleSubmit}>
