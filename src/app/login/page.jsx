@@ -8,7 +8,6 @@ import { IoIosCloseCircle } from "react-icons/io";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -20,9 +19,6 @@ export default function Login() {
       body: JSON.stringify({ username, password }),
     });
     const info = await response.json();
-    if (info.error) {
-      return setError(info.error);
-    }
     router.push("/home");
     router.refresh();
   }

@@ -3,9 +3,8 @@ import { CiEdit } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function EditPost({ post }) {
+export default function EditComment({ post }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedTitle, setUpdatedTitle] = useState(post.title);
   const [updatedMsg, setUpdatedMsg] = useState(post.message);
 
   const router = useRouter();
@@ -15,7 +14,6 @@ export default function EditPost({ post }) {
   }
 
   function handleCancel() {
-    setUpdatedTitle(updatedTitle);
     setUpdatedMsg(post.message);
     setIsEditing(false);
   }
@@ -28,7 +26,6 @@ export default function EditPost({ post }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: updatedTitle,
         message: updatedMsg,
       }),
     });
@@ -46,13 +43,6 @@ export default function EditPost({ post }) {
       </button>
       <div style={{ display: isEditing ? "block" : "none" }}>
         <form id="newPostForm" onSubmit={handleSubmit}>
-          <textarea
-            type="text"
-            value={updatedTitle}
-            onChange={(e) => setUpdatedTitle(e.target.value)}
-          >
-            {updatedTitle}
-          </textarea>
           <textarea
             value={updatedMsg}
             onChange={(e) => setUpdatedMsg(e.target.value)}

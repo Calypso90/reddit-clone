@@ -2,7 +2,7 @@
 import { MdDeleteOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
-export default function DeletePost({ post, subId }) {
+export default function DeleteComment({ post }) {
   const router = useRouter();
 
   async function handleDelete() {
@@ -11,7 +11,6 @@ export default function DeletePost({ post, subId }) {
       cache: "no-store",
     });
     const info = await response.json();
-    router.push(`/subreddits/${subId}`);
     router.refresh();
   }
 

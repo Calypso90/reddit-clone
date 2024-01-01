@@ -1,11 +1,10 @@
 import { prisma } from "@/lib/prisma.js";
 import { fetchUser } from "@/lib/fetchUser.js";
 import { FaReddit } from "react-icons/fa";
-import { BsFillArrowDownSquareFill } from "react-icons/bs";
-import { BsFillArrowUpSquareFill } from "react-icons/bs";
 import { FaRegCommentAlt } from "react-icons/fa";
 import NewPost from "@/components/newPost.jsx";
 import Link from "next/link.js";
+import PostVotes from "@/components/votes.jsx";
 
 export default async function SubPage({ params }) {
   const { subredditId } = params;
@@ -19,7 +18,7 @@ export default async function SubPage({ params }) {
       subredditId: subredditId,
       parentId: null,
     },
-    include: { user: true },
+    include: { user: true, children: true, votes: true },
     orderBy: { createdAt: "desc" },
   });
 
@@ -37,15 +36,7 @@ export default async function SubPage({ params }) {
         {posts.map((post) => {
           return (
             <div className="r-postContainer" key={post.id}>
-              <div className="r-PostVotes">
-                <button className="upvote">
-                  <BsFillArrowUpSquareFill />
-                </button>
-                <p>0</p>
-                <button className="downvote">
-                  <BsFillArrowDownSquareFill />
-                </button>
-              </div>
+              <PostVotes post={post} votes={post.votes} />
               <Link
                 className="r-post"
                 href={`/subreddits/${post.subredditId}/${post.id}`}
@@ -60,6 +51,7 @@ export default async function SubPage({ params }) {
                 </div>
                 <div className="postMessage">{post.message}</div>
                 <div className="postComments">
+                  <p>{post.children.length}</p>
                   <FaRegCommentAlt />
                 </div>
               </Link>
