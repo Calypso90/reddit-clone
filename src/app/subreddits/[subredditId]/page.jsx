@@ -36,25 +36,27 @@ export default async function SubPage({ params }) {
         {posts.map((post) => {
           return (
             <div className="r-postContainer" key={post.id}>
-              <PostVotes post={post} votes={post.votes} />
-              <Link
-                className="r-post"
-                href={`/subreddits/${post.subredditId}/${post.id}`}
-              >
-                <div className="postTitleBox">
-                  <div className="postTitle">
-                    {post.title}{" "}
-                    <p className="titleReddit">
-                      <FaReddit /> Posted by u/{post.user.username}
-                    </p>
+              <div className="postBox">
+                <PostVotes post={post} votes={post.votes} />
+                <Link
+                  className="r-post"
+                  href={`/subreddits/${post.subredditId}/${post.id}`}
+                >
+                  <div className="postTitleBox">
+                    <div className="postTitle">
+                      {post.title}{" "}
+                      <p className="titleReddit">
+                        <FaReddit /> Posted by u/{post.user.username}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="postMessage">{post.message}</div>
-                <div className="postComments">
-                  <p>{post.children.length}</p>
-                  <FaRegCommentAlt />
-                </div>
-              </Link>
+                  <div className="postMessage">{post.message}</div>
+                  <div className="postComments">
+                    <p>{post.children.length}</p>
+                    <FaRegCommentAlt />
+                  </div>
+                </Link>
+              </div>
             </div>
           );
         })}

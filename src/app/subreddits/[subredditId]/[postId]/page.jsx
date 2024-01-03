@@ -19,14 +19,10 @@ export default async function PostPage({ params }) {
     include: { user: true, children: true, subreddit: true },
   });
 
+  console.log(post.children);
+
   const sub = await prisma.subreddit.findFirst({
     where: { id: subredditId },
-  });
-
-  const comments = await prisma.post.findMany({
-    where: { parentId: postId },
-    include: { user: true, children: true, votes: true, subreddit: true },
-    orderBy: { createdAt: "desc" },
   });
 
   const votes = await prisma.votes.findMany({
@@ -62,9 +58,16 @@ export default async function PostPage({ params }) {
           </div>
         </div>
       </div>
+      <NewComment post={post} subredditId={subredditId} />
       <div id="comments">
-        <NewComment post={post} subredditId={subredditId} />
-        <Comments comments={comments} subredditId={subredditId} />
+        {post.children &&
+          post.children.map((comment) => (
+            <Comments
+              key={comment.id}
+              postId={comment.id}
+              subredditId={subredditId}
+            />
+          ))}
       </div>
     </div>
   );

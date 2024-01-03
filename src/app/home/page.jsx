@@ -29,22 +29,24 @@ export default async function Homepage() {
       {posts.map((post) => {
         return (
           <div className="r-postContainer" key={post.id}>
-            <PostVotes post={post} votes={post.votes} />
-            <Link
-              className="r-post"
-              href={`/subreddits/${post.subreddit.id}/${post.id}`}
-            >
-              <div className="postTitle">
-                <p>{post.title}</p>
-                <p className="titleReddit">
-                  <FaReddit /> r/{post.subreddit.name}
-                </p>
-              </div>
-              <div className="postMessage">{post.message}</div>
-              <div className="postComments">
-                {post.children.length} <FaRegCommentAlt />
-              </div>
-            </Link>
+            <div className="postBox">
+              <PostVotes post={post} votes={post.votes} />
+              <Link
+                className="r-post"
+                href={`/subreddits/${post.subreddit.id}/${post.id}`}
+              >
+                <div className="postTitle">
+                  <p>{post.title}</p>
+                  <p className="titleReddit">
+                    <FaReddit /> r/{post.subreddit.name}
+                  </p>
+                </div>
+                <div className="postMessage">{post.message}</div>
+                <div className="postComments">
+                  {post.children.length} <FaRegCommentAlt />
+                </div>
+              </Link>
+            </div>
           </div>
         );
       })}

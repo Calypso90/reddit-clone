@@ -64,7 +64,6 @@ export default function NewPost({ user, subredditId }) {
           {" "}
           Create Post
         </button>
-        <div id="create1"></div>
       </div>
       <div id="newPost" style={{ display: isCreating ? "flex" : "none" }}>
         <form id="newPostForm" onSubmit={handleSubmit}>
@@ -82,8 +81,6 @@ export default function NewPost({ user, subredditId }) {
             onChange={(e) => setPostMessage(e.target.value)}
           ></textarea>
           <div id="buttonDiv">
-            {/* <CiImageOn />
-            <IoIosLink /> */}
             <button className="postButton" type="submit">
               Submit
             </button>

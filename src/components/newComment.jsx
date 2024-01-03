@@ -47,16 +47,15 @@ export default function NewComment({ post, subredditId }) {
   return (
     <form id="newCommentForm" onSubmit={handleSubmit}>
       <textarea
-        id="newPostText"
         placeholder="Text..."
         value={comment}
         onChange={(e) => setComment(e.target.value)}
       ></textarea>
       <div id="buttonDiv">
-        <button className="postButton" type="submit">
+        <button className="commentButton" type="submit">
           Submit
         </button>
-        <button className="postButton" type="button" onClick={handleCancel}>
+        <button className="commentButton" type="button" onClick={handleCancel}>
           Cancel
         </button>
       </div>

@@ -310,16 +310,22 @@ a {
   width: 100%;
 }
 
+.postBox {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  background-color: white;
+  border: 1px solid #747e88;
+}
+
 .r-PostVotes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  width: 3%;
-  padding: 10px;
+  gap: 3px;
+  width: 5%;
+  padding: 5px;
   font-size: 15px;
-  background-color: white;
-  border: 1px solid #747e88;
 }
 
 .upvote {
@@ -341,11 +347,9 @@ a {
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  width: 85%;
-  padding: 10px;
+  width: 95%;
+  padding: 5px;
   font-size: 20px;
-  background-color: white;
-  border: 1px solid #747e88;
 }
 
 .postTitleBox {
@@ -363,21 +367,6 @@ a {
 .postMessage {
   font-size: 15px;
   font-weight: lighter;
-}
-
-.postComments {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 5px;
-  font-size: 15px;
-  color: #747e88;
-}
-
-.commentContainer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 #newPost {
@@ -439,6 +428,13 @@ a {
   color: #95a2af;
 }
 
+#reply {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #747e88;
+}
+
 /* POST PAGE */
 
 .postPage {
@@ -452,7 +448,9 @@ a {
 .postContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 90%;
+  background-color: white;
+  border: 1px solid black;
 }
 
 #newComment {
@@ -465,8 +463,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 80%;
-  padding: 10px;
+  width: 90%;
+  padding: 5px;
   color: black;
   background-color: white;
   border: 1px solid #747e88;
@@ -479,11 +477,45 @@ a {
   width: 100%;
 }
 
+.commentButton {
+  border: none;
+  background-color: #ff4500;
+  color: white;
+  font-weight: bolder;
+  font-size: 12px;
+}
+
 .commentBox {
-  width: 80%;
-  background-color: white;
-  border: 1px solid #747e88;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
   padding: 10px;
+}
+
+.commentOptions {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: 15px;
+  color: #747e88;
+}
+
+.postComments {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  color: #747e88;
+}
+
+.commentContainer {
+  display: flex;
+  width: 90%;
+  border-left: 1px solid #747e88;
+  border-top: 1px solid #747e88;
+  background-color: white;
 }
 
 /* HOMEPAGE */

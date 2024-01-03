@@ -58,10 +58,14 @@ export default function EditPost({ post }) {
             onChange={(e) => setUpdatedMsg(e.target.value)}
           ></textarea>
           <div id="buttonDiv">
-            <button className="postButton" type="submit">
+            <button className="commentButton" type="submit">
               Submit
             </button>
-            <button className="postButton" type="button" onClick={handleCancel}>
+            <button
+              className="commentButton"
+              type="button"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
           </div>
