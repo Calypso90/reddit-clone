@@ -4,11 +4,10 @@ import { FaReddit } from "react-icons/fa";
 import { FaRegCommentAlt } from "react-icons/fa";
 import DeletePost from "@/components/deletePost.jsx";
 import EditPost from "@/components/editPost.jsx";
-import NewComments from "@/components/newComment.jsx";
-import DeleteComment from "@/components/deleteComment.jsx";
-import EditComment from "@/components/editComment.jsx";
+import NewComment from "@/components/newComment.jsx";
 import PostVotes from "@/components/votes.jsx";
 import Link from "next/link.js";
+import Comments from "@/components/comments.jsx";
 
 export default async function PostPage({ params }) {
   const { subredditId, postId } = params;
@@ -17,7 +16,7 @@ export default async function PostPage({ params }) {
 
   const post = await prisma.post.findFirst({
     where: { id: postId },
-    include: { user: true, children: true },
+    include: { user: true, children: true, subreddit: true },
   });
 
   const sub = await prisma.subreddit.findFirst({
@@ -26,6 +25,7 @@ export default async function PostPage({ params }) {
 
   const comments = await prisma.post.findMany({
     where: { parentId: postId },
+    include: { user: true, children: true, votes: true, subreddit: true },
     orderBy: { createdAt: "desc" },
   });
 
@@ -63,19 +63,8 @@ export default async function PostPage({ params }) {
         </div>
       </div>
       <div id="comments">
-        <NewComments post={post} subredditId={subredditId} />
-        {comments.map((post) => {
-          return (
-            <div className="commentBox" key={post.id}>
-              <div className="postMessage">{post.message}</div>
-              <div className="postComments">
-                <EditComment post={post} />
-                <DeleteComment post={post} />
-                <FaRegCommentAlt /> Reply
-              </div>
-            </div>
-          );
-        })}
+        <NewComment post={post} subredditId={subredditId} />
+        <Comments comments={comments} subredditId={subredditId} />
       </div>
     </div>
   );

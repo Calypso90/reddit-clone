@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function NewComments({ post, subredditId }) {
+export default function NewComment({ post, subredditId }) {
   const [comment, setComment] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");

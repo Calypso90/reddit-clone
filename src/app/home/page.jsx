@@ -2,8 +2,6 @@ import { prisma } from "@/lib/prisma.js";
 import { fetchUser } from "@/lib/fetchUser.js";
 import Link from "next/link.js";
 import { FaReddit } from "react-icons/fa";
-import { BsFillArrowDownSquareFill } from "react-icons/bs";
-import { BsFillArrowUpSquareFill } from "react-icons/bs";
 import { FaRegCommentAlt } from "react-icons/fa";
 import PostVotes from "@/components/votes.jsx";
 
