@@ -60,7 +60,7 @@ export default function CommentReply({ post, subredditId, user }) {
         id="reply"
         style={{ display: !isReplying ? "flex" : "none" }}
       >
-        <FaRegCommentAlt />
+        <>Reply</> <FaRegCommentAlt />
       </button>
       <div>
         <form

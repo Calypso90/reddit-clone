@@ -8,6 +8,7 @@ import NewComment from "@/components/newComment.jsx";
 import PostVotes from "@/components/votes.jsx";
 import Link from "next/link.js";
 import Comments from "@/components/comments.jsx";
+import { NumofComments } from "@/lib/numOfComment.js";
 
 export default async function PostPage({ params }) {
   const { subredditId, postId } = params;
@@ -26,6 +27,8 @@ export default async function PostPage({ params }) {
   const votes = await prisma.votes.findMany({
     where: { postId: postId },
   });
+
+  const allComments = await NumofComments(postId);
 
   return (
     <div className="postPage">
@@ -53,7 +56,7 @@ export default async function PostPage({ params }) {
           </div>
           <div className="postMessage">{post.message}</div>
           <div className="postComments">
-            <p>{post.children.length}</p>
+            <p>{allComments}</p>
             <FaRegCommentAlt />
           </div>
         </div>

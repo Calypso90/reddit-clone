@@ -5,6 +5,7 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import NewPost from "@/components/newPost.jsx";
 import Link from "next/link.js";
 import PostVotes from "@/components/votes.jsx";
+import Post from "@/components/post.jsx";
 
 export default async function SubPage({ params }) {
   const { subredditId } = params;
@@ -18,7 +19,7 @@ export default async function SubPage({ params }) {
       subredditId: subredditId,
       parentId: null,
     },
-    include: { user: true, children: true, votes: true },
+    include: { user: true, children: true, votes: true, subreddit: true },
     orderBy: { createdAt: "desc" },
   });
 
@@ -34,31 +35,7 @@ export default async function SubPage({ params }) {
       <NewPost user={user} subredditId={subredditId} />
       <>
         {posts.map((post) => {
-          return (
-            <div className="r-postContainer" key={post.id}>
-              <div className="postBox">
-                <PostVotes post={post} votes={post.votes} user={user} />
-                <Link
-                  className="r-post"
-                  href={`/subreddits/${post.subredditId}/${post.id}`}
-                >
-                  <div className="postTitleBox">
-                    <div className="postTitle">
-                      {post.title}{" "}
-                      <p className="titleReddit">
-                        <FaReddit /> Posted by u/{post.user.username}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="postMessage">{post.message}</div>
-                  <div className="postComments">
-                    <p>{post.children.length}</p>
-                    <FaRegCommentAlt />
-                  </div>
-                </Link>
-              </div>
-            </div>
-          );
+          return <Post post={post} />;
         })}
       </>
     </div>

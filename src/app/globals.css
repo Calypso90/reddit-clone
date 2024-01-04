@@ -429,6 +429,9 @@ a {
 }
 
 #reply {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
   background: none;
   border: none;
   font-size: 15px;
@@ -495,7 +498,7 @@ a {
 
 .commentOptions {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 3px;
   font-size: 15px;
   color: #747e88;
