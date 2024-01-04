@@ -450,7 +450,7 @@ a {
   justify-content: center;
   width: 90%;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #747e88;
 }
 
 #newComment {
@@ -514,8 +514,12 @@ a {
   display: flex;
   width: 90%;
   border-left: 1px solid #747e88;
-  border-top: 1px solid #747e88;
   background-color: white;
+}
+
+#commentUser {
+  font-size: 15px;
+  color: #747e88;
 }
 
 /* HOMEPAGE */

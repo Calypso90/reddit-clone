@@ -18,6 +18,16 @@ export async function POST(request, response) {
         success: false,
         error: "User already exists. Please login.",
       });
+    } else if (!username) {
+      return NextResponse.json({
+        success: false,
+        error: "Please provide a username.",
+      });
+    } else if (!password) {
+      return NextResponse.json({
+        success: false,
+        error: "Please provide a password.",
+      });
     }
     const user = await prisma.user.create({
       data: {

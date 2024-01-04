@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function NewComment({ post, subredditId }) {
+export default function NewComment({ post, subredditId, user }) {
   const [comment, setComment] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
@@ -45,21 +45,30 @@ export default function NewComment({ post, subredditId }) {
   }
 
   return (
-    <form id="newCommentForm" onSubmit={handleSubmit}>
-      <textarea
-        placeholder="Text..."
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-      ></textarea>
-      <div id="buttonDiv">
-        <button className="commentButton" type="submit">
-          Submit
-        </button>
-        <button className="commentButton" type="button" onClick={handleCancel}>
-          Cancel
-        </button>
-      </div>
-      <p>{errorMsg}</p>
-    </form>
+    <>
+      {!user.id && <p>Please login to comment on posts</p>}
+      {user.id && (
+        <form id="newCommentForm" onSubmit={handleSubmit}>
+          <textarea
+            placeholder="Comment..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          ></textarea>
+          <div id="buttonDiv">
+            <button className="commentButton" type="submit">
+              Submit
+            </button>
+            <button
+              className="commentButton"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+          <p>{errorMsg}</p>
+        </form>
+      )}
+    </>
   );
 }

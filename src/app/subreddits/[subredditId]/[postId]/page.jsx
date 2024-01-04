@@ -19,8 +19,6 @@ export default async function PostPage({ params }) {
     include: { user: true, children: true, subreddit: true },
   });
 
-  console.log(post.children);
-
   const sub = await prisma.subreddit.findFirst({
     where: { id: subredditId },
   });
@@ -37,7 +35,7 @@ export default async function PostPage({ params }) {
         </Link>
       </div>
       <div className="postContainer">
-        <PostVotes post={post} votes={votes} />
+        <PostVotes post={post} votes={votes} user={user} />
         <div className="r-post">
           <div className="postTitleBox">
             <div className="postTitle">
@@ -47,8 +45,10 @@ export default async function PostPage({ params }) {
               </p>
             </div>
             <div className="postChange">
-              <EditPost post={post} />
-              <DeletePost post={post} subId={subredditId} />
+              {user.id === post.user.id && <EditPost post={post} />}
+              {user.id === post.user.id && (
+                <DeletePost post={post} subId={subredditId} />
+              )}
             </div>
           </div>
           <div className="postMessage">{post.message}</div>
@@ -58,7 +58,7 @@ export default async function PostPage({ params }) {
           </div>
         </div>
       </div>
-      <NewComment post={post} subredditId={subredditId} />
+      <NewComment post={post} subredditId={subredditId} user={user} />
       <div id="comments">
         {post.children &&
           post.children.map((comment) => (

@@ -3,7 +3,7 @@ import { BsFillArrowDownSquareFill } from "react-icons/bs";
 import { BsFillArrowUpSquareFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
-export default function PostVotes({ post, votes }) {
+export default function PostVotes({ post, votes, user }) {
   const router = useRouter();
 
   let count = 0;
@@ -17,25 +17,29 @@ export default function PostVotes({ post, votes }) {
   }
 
   async function handleUpvote() {
-    const response = await fetch(`/api/votes`, {
-      method: "POST",
-      body: JSON.stringify({
-        isUpvote: true,
-        postId: post.id,
-      }),
-    });
-    router.refresh();
+    if (user.id) {
+      const response = await fetch(`/api/votes`, {
+        method: "POST",
+        body: JSON.stringify({
+          isUpvote: true,
+          postId: post.id,
+        }),
+      });
+      router.refresh();
+    }
   }
 
   async function handleDownvote() {
-    const response = await fetch(`/api/votes`, {
-      method: "POST",
-      body: JSON.stringify({
-        isUpvote: false,
-        postId: post.id,
-      }),
-    });
-    router.refresh();
+    if (user.id) {
+      const response = await fetch(`/api/votes`, {
+        method: "POST",
+        body: JSON.stringify({
+          isUpvote: false,
+          postId: post.id,
+        }),
+      });
+      router.refresh();
+    }
   }
 
   return (
