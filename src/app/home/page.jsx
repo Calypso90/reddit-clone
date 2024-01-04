@@ -20,17 +20,11 @@ export default async function Homepage() {
   return (
     <div id="homeFeed">
       {!user.id && <p>Please login to see your feed.</p>}
-      {user.id && (
-        <div id="createPost">
-          <FaReddit />
-          <button id="createPostButton"> Create Post</button>
-        </div>
-      )}
       {posts.map((post) => {
         return (
           <div className="r-postContainer" key={post.id}>
             <div className="postBox">
-              <PostVotes post={post} votes={post.votes} />
+              <PostVotes post={post} votes={post.votes} user={user} />
               <Link
                 className="r-post"
                 href={`/subreddits/${post.subreddit.id}/${post.id}`}

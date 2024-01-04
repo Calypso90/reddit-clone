@@ -2,6 +2,7 @@
 import { BsFillArrowDownSquareFill } from "react-icons/bs";
 import { BsFillArrowUpSquareFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function PostVotes({ post, votes, user }) {
   const router = useRouter();
@@ -44,11 +45,11 @@ export default function PostVotes({ post, votes, user }) {
 
   return (
     <div className="r-PostVotes">
-      <button className="upvote" onClick={handleUpvote}>
+      <button className="upvote" disabled={!user.id} onClick={handleUpvote}>
         <BsFillArrowUpSquareFill />
       </button>
       <p>{count}</p>
-      <button className="downvote" onClick={handleDownvote}>
+      <button className="downvote" disabled={!user.id} onClick={handleDownvote}>
         <BsFillArrowDownSquareFill />
       </button>
     </div>

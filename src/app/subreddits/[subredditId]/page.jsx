@@ -37,7 +37,7 @@ export default async function SubPage({ params }) {
           return (
             <div className="r-postContainer" key={post.id}>
               <div className="postBox">
-                <PostVotes post={post} votes={post.votes} />
+                <PostVotes post={post} votes={post.votes} user={user} />
                 <Link
                   className="r-post"
                   href={`/subreddits/${post.subredditId}/${post.id}`}

@@ -533,25 +533,16 @@ a {
   width: 100%;
 }
 
-#createPost {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 10px;
-  width: 90%;
-  padding: 10px;
-  font-size: 35px;
-  color: #747e88;
-  background-color: white;
-  border: 1px solid #747e88;
-}
-
 #createPostButton {
-  width: 80%;
+  width: 150px;
   padding: 7px;
-  text-align: left;
   border: none;
-  color: #747e88;
+  border-radius: 50px;
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  text-align: center;
+  background-color: #ff4500;
 }
 
 #create1 {
@@ -568,4 +559,53 @@ a {
 
 .postChange {
   display: flex;
+}
+
+.loader {
+  display: block;
+  margin: auto;
+  margin-top: 200px;
+  height: 20px;
+  width: 140px;
+  background-image: linear-gradient(#fff 20px, transparent 0),
+    linear-gradient(#fff 20px, transparent 0),
+    linear-gradient(#fff 20px, transparent 0),
+    linear-gradient(#fff 20px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 20px auto;
+  background-position: 0 0, 40px 0, 80px 0, 120px 0;
+  animation: pgfill 1s linear infinite;
+}
+
+@keyframes pgfill {
+  0% {
+    background-image: linear-gradient(#fff 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0);
+  }
+  25% {
+    background-image: linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0);
+  }
+  50% {
+    background-image: linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0);
+  }
+  75% {
+    background-image: linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#fff 20px, transparent 0);
+  }
+  100% {
+    background-image: linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#ff3d00 20px, transparent 0),
+      linear-gradient(#ff3d00 20px, transparent 0);
+  }
 }
