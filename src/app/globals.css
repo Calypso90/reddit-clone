@@ -76,6 +76,7 @@ a {
 
 #search-div {
   width: 100%;
+  visibility: hidden;
 }
 
 #nav2 {
