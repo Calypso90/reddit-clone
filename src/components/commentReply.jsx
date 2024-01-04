@@ -46,6 +46,7 @@ export default function CommentReply({ post, subredditId, user }) {
         setErrorMsg(info.error);
       } else {
         setComment("");
+        setIsReplying(false);
         setErrorMsg("");
         router.refresh();
       }
